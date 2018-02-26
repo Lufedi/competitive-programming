@@ -1,0 +1,61 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+typedef pair<string,int> si;
+typedef pair<int, string> is;
+typedef pair<int , int> ii;
+typedef vector<int>  vi;
+typedef vector<ii> vii;
+
+int edges;
+map<string , int> dic1;
+map<int ,string>  dic2;
+vector<vii> adjList;
+int nodos;
+
+
+void solve(){
+vi vis()
+
+
+
+
+}
+int main(){
+
+
+    while(cin >> edges){
+
+        string s1 , s2;
+        int u ,  v;
+         nodos = 0 ;
+        for(int i = 0; i <=  edges ; i++){
+            cin >> s1;
+            if( dic1.count(s1) == 0){
+                dic1.insert( si(s1 , nodos));
+                dic2.insert( is(nodos ,s1));
+                adjList.push_back(vii());
+                u = nodos;
+                nodos++;
+            }else{
+                u = dic1[s1];
+            }
+            cin >> s2;
+            if(dic1.count(s2) == 0){
+                dic1.insert(si(s2 , nodos));
+                dic2.insert(is(nodos , s2));
+                adjList.push_back(vii());
+                v  = nodos;
+                nodos++;
+            }else{
+                v = dic1[s2];
+            }
+            adjList[u].push_back(ii(v , 0));
+            solve();
+        }
+
+    }
+
+
+return 0;
+}

@@ -1,0 +1,115 @@
+#include <math.h>
+#include <iostream>
+#include <cstdlib>
+#include <cstdio>
+#include <vector>
+#define EPS 1e-9
+#define FOR(i, a ,b) for(i = a ; a < b ;i++)
+#define igual( a ,  b)  fabs( a  - b) < EPS
+
+
+
+
+using namespace std;
+
+typedef vector<int> vi;
+typedef pair<int , int> ii;
+typedef vector<ii> vii;
+
+
+struct Point{
+double x , y;
+Point(double _x ,double _y){x= _x ; y = _y;}
+};
+
+struct Linea{
+double a , b , c;
+    Linea(double _a,  double  _b  , double _c) {
+        a  = _a ;
+        b = _b ;
+        c = _c;
+
+    }
+};
+void toLinea(Point a , Point  b , Linea &l){
+    if(fabs(a.x - b.x) < EPS){
+        l.a  =  1 ;  l.b =  0.0; l.c = -a.x;
+    }else{
+        l.a =  -(double) (a.y - b.y) /(a.x - b.x);
+        l.b = 1.0;
+        l.c = -(double)(l.a*a.x)-a.y;
+    }
+}
+
+/*
+struct Vector{
+    double  i , j;
+    Vector(double  _i , double _j){  i =  _i; j = _j;}
+};
+
+Vector toVec(Point a , Point b){
+    return Vector( b.x - a.x ,  b.y  - a.y);
+}*/
+
+
+
+double dist(Point a, Point b){
+    return sqrt((a.x-b.x)*(a.x-b.x) + (a.y-b.y)*(a.y-b.y));
+}
+double dot(Point a, Point b){
+    return(a.x*b.x+a.y*b.y);
+}
+double norm_sq(Point vec){
+    return vec.x * vec.x + vec.y * vec.y;
+}
+bool pendiente(Point a , Point b){
+    return (b.y  - a.y)/(b.x - a.x);
+}
+bool lineasParalelas(Linea l1  , Linea l2){
+    return ( fabs( l1.a - l2.a)  < EPS  && fabs(l1.b -  l2.b ) < EPS ) ;
+}
+
+double angle(Point a , Point  b  , Point c){
+        //Crear los vectores ab   ,   bc
+        Point v_ab(b.x - a.x , b.y - a.y) ;
+        Point v_bc(c.x - b.x , c.y - b.y);
+        //cout  << "  "  << v_ab.x  << "  " << v_ab.y << " - " << v_bc.x << " " << v_bc.y << endl;
+        double pp  =  dot(v_ab , v_bc);
+        double n1 =  norm_sq(v_ab);
+        double n2 =  norm_sq(v_bc);
+        double pc =  sqrt( n1 *  n2);
+       // cout <<n1  << " " <<  n2 <<" "<<  pp << " " <<  pc << endl;
+        return  acos( pp /pc);
+}
+
+
+int x , y;
+int casos;
+vii points[4];
+
+
+
+void ordenarPuntos(){
+
+
+}
+int main(){
+
+
+    scanf("%d" ,  &casos);
+    while(casos--){
+
+
+            scanf("%d %d" , &(points[0].first)  , &(points[0].second));
+            scanf("%d %d" , &(points[1].first)  , &(points[1].second));
+            scanf("%d %d" , &(points[2].first)  , &(points[2].second));
+            scanf("%d %d" , &(points[3].first)  , &(points[3].second));
+            ordenarPuntos();
+
+    }
+
+
+
+
+return  0;
+}

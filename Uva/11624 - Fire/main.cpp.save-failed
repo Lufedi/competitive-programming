@@ -1,0 +1,32 @@
+
+
+
+
+#include <cstdio>
+#include <algorithm>
+#include <iostream>
+#DEFINE FOR(i , a , b) for(int i = a ;  i  < b ; i++)
+
+
+int main(){
+
+
+    int casos;
+    int r , c ;
+
+    scanf("%d " ,  casos);
+    while(casos--){
+
+    char[r][c] mapa;
+
+    scanf("%d  %d" ,  &r , &c);
+    cout << r <<  " " << c ;
+
+
+
+
+    }
+
+
+
+}

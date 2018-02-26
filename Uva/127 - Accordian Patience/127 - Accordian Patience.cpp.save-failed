@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
+#include <list>
+#include <stack>
+#include<string>
+#include <cstring>
+
+using namespace std;
+char cad[200];
+char *c;
+
+
+list< stack<string> > cards;
+int cont;
+int main(){
+
+
+    gets(cad);
+    while(cad != "#"){
+
+        cont = 0;
+        cards.assign(26 , stack<string>());
+
+        c = strtok(cad , " ");
+
+        while (c != NULL){
+
+            cards[cont].push_back(c);
+            c = strtok(NULL, " ");
+
+        }
+
+
+
+        gets(cad);
+    }
+
+
+
+return 0;
+}

@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+#include <cstdio>
+using namespace std;
+
+
+
+char palabras[10005][25];
+int contP;
+
+int main(){
+
+    contP = 0;
+    scanf("%s" , palabras[contP]);
+    while( strcmp( palabras[contP] , "#")  != 0){
+        contP++;
+        scanf("%s"  , palabras[contP]);
+    }
+
+
+    queue<char> q;
+
+
+
+
+
+return 0;
+}

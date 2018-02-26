@@ -1,0 +1,25 @@
+4
+
+A B F G
+A<B B<F
+
+A B F G
+A<B B<F
+
+A B C
+A<B B<C C<A
+
+A B
+A<B B<A
+1
+
+A B F G H P L O N
+A<B B<F
+
+2
+
+A B F G
+A<B B<F
+
+A B F G
+A<B B<F

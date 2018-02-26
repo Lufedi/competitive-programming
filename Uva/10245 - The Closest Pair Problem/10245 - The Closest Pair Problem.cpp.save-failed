@@ -1,0 +1,36 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+
+struct Point{
+    double x  , y ;
+    Point(double _x ,  double _y ){
+        x  = _x ;  y = _y;
+    }
+};
+
+int c_puntos;
+vector<Point>  puntos;
+int main(){
+    cin >>  c_puntos;
+
+
+    while(c_puntos != 0){
+        int x ,  y;
+        cin >> x;
+        cin >> y;
+        for(int i = 0 ; i < puntos  ;i++ ){
+            puntos.push_back(Point( x , y))
+        }
+
+
+    }
+
+
+
+
+
+
+}
