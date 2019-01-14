@@ -1,5 +1,3 @@
-
-
 from sys import stdin
 
 def main():
@@ -9,12 +7,12 @@ def main():
     countNumbers = {}
     for n in arr:
         if n in countNumbers:
-            countNumbers[n] = countNumbers[n] + 1
+            countNumbers[n]= countNumbers[n] + 1
         else:
             countNumbers[n] =  1
 
  
-    res = []
+    res = [-1 for x in arr]
     isValid = True
     for key in countNumbers:
         if countNumbers[key] > k:
@@ -23,32 +21,31 @@ def main():
         print("NO")
     else:
         
+        filledNumbers = 0
         colorsDict = {}
-        for a in range(1, k +1): colorsDict[a] = []
-
+        for a in range(1, k +1): colorsDict[a] = {}
         color = 1
-        for n in arr:
-            
-            if not n in colorsDict[color]:
-                colorsDict[color].append(n)
-                res.append(color)
+        n = 0
+        while color != k+1:
+            if res[n] == -1 and  not arr[n] in colorsDict[color]:
+                colorsDict[color][arr[n]]=1
+                res[n] = color
+                #next color
+                color += 1
+            n = (n+1)%N
+        for i in range(0, len(arr)):
+            if res[i] == -1:
+                res[i] = findColor(arr[i], colorsDict)
                 
-            else:
-                while(n in colorsDict[color]):
-                    color = nextColor(color, k)
-
-                res.append(color)
-            color =nextColor(color, k)
-
         print("YES")
         print(' '.join(str(e) for e in res))
 
-def nextColor(color, k):
-    color = color +1
-    if color  == k + 1:
-        color = 1
-    return color
-
+def findColor(e, colors):
+    for color in colors:
+        if not e in colors[color]:
+            colors[color][e] = 1
+            return color
+    return -3
 main()
 
 '''
@@ -65,4 +62,3 @@ YES
 2 1 1 2 1
 inputCopy
 5 2
-2 1 1 2 1'''
