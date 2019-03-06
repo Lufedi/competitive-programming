@@ -23,22 +23,29 @@ def main():
         
         filledNumbers = 0
         colorsDict = {}
+        for a in range(1, k +1): colorsDict[a] = {}
         color = 1
         n = 0
-        
+        while color != k+1:
+            if res[n] == -1 and  not arr[n] in colorsDict[color]:
+                colorsDict[color][arr[n]]=1
+                res[n] = color
+                #next color
+                color += 1
+            n = (n+1)%N
         for i in range(0, len(arr)):
-            if not arr[i] in colorsDict:
-                colorsDict[arr[i]]= color
-                color = (color % k ) + 1
-            else:
-                colorsDict[arr[i]]= (colorsDict[arr[i]]%k)+1
-                color = (color  % k ) + 1
-            res[i]=colorsDict[arr[i]]
+            if res[i] == -1:
+                res[i] = findColor(arr[i], colorsDict)
                 
         print("YES")
         print(' '.join(str(e) for e in res))
 
-
+def findColor(e, colors):
+    for color in colors:
+        if not e in colors[color]:
+            colors[color][e] = 1
+            return color
+    return -3
 main()
 
 '''
@@ -55,20 +62,3 @@ YES
 2 1 1 2 1
 inputCopy
 5 2
-2 1 1 2 1'''
-
-'''
-4 2
-1 2 2 3
-outputCopy
-YES
-1 1 2 2
-inputCopy
-5 2
-3 2 1 2 3
-outputCopy
-YES
-2 1 1 2 1
-inputCopy
-5 2
-2 1 1 2 1'''
