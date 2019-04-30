@@ -13,7 +13,6 @@ class Solution():
             tokens.append(token)
         
         words = []
-        print(tokens)
         for i in range(len(tokens)-1, -1, -1):
             words.append(''.join(tokens[i]))
         return " ".join(words)
