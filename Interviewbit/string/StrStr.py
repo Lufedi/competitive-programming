@@ -1,6 +1,6 @@
 
 class Solution():
-    def strStr(self, a, b):
+    def strStr(self, b, a):
         if a == -1 or b == -1:
             return -1
         if len(a) > len(b):
@@ -12,7 +12,8 @@ class Solution():
                     isSub=False
             if isSub:
                 return i
+        return -1
 def main():
     s = Solution()
-    print(s.strStr("abc", "osiiduddsuuabcksks"))
+    print(s.strStr("bbaabbbbbaabbaabbbbbbabbbabaabbbabbabbbbababbbabbabaaababbbaabaaaba", "babaaa"))
 main()
