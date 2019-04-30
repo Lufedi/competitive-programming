@@ -1,3 +1,4 @@
+
 class Solution():
     def strStr(self, a, b):
         if a == -1 or b == -1:
@@ -11,3 +12,7 @@ class Solution():
                     isSub=False
             if isSub:
                 return i
+def main():
+    s = Solution()
+    print(s.strStr("abc", "osiiduddsuuabcksks"))
+main()
