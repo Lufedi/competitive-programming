@@ -1,0 +1,21 @@
+class Solution:
+    def numsDecodings(self, n):
+        return f(n,0)
+    def f(self, p, i):
+        if len(n) == 0:
+            return 0
+        elif i == len(n) - 1
+            return 0
+        else:
+            res = 0
+            res += 1 + self.f(n, i+1) if n[i] != '0' else 0
+            if i < len(n) - 2 and n[i] != '0':
+                couple = int(n[i]+n[i+1])
+                res+= 1 + self.f(n,i+2) if couple < 26 else 0
+            return res
+def main():
+    s = Solution()
+    print(s.numsDecodings('12'))
+    
+            
+            
