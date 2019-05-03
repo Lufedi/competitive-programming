@@ -9,32 +9,33 @@ class Tree:
 
 def findSubstring(w, p):
     pt = buildTree(p)
-    res = (0,0)
-    for i in range(len(w)):
-        temp = match(w, i, pt)
-        if temp > res[0]:
-            res = (temp,i)
-        elif temp==res[0]:
-            if i < res[1]:
+    rw = []
+    for word in w:
+        res = (0,0)
+        for i in range(len(word)):
+            temp = match(word, i, pt)
+            if temp > res[0]:
                 res = (temp,i)
-        else:
-            pass
-            
+            elif temp==res[0]:
+                if i < res[1]:
+                    res = (temp,i)
+            else:
+                pass
+        i,l = res
+        rw.append(word[:i]+"["+word[i:i+l+1]+"]"+word[i+l+1:])
+    return rw
+        
 def match(w, i, t):
     if t.value == 'end':
         return 1
-    elif w[i] != t.value:
+    elif w[i] != t.value and t.value != "@":
         return 0
     else:
         res = 0
         for n,p in t.nodes.items():
             res = 1 + max(res,match(w, i+1,t))
         return res
-            
-            
-        
-    
-        
+
 def buildTree(p):
     t = Tree('@')
     for w in p:
@@ -50,3 +51,8 @@ def insertWord(t,p,i):
         return
             
             
+
+
+words = ["Apple", "Melon", "Orange", "Watermelon"]
+parts = ["a", "mel", "lon", "el", "An"]
+print(findSubstring(words,parts))
