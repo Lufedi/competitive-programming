@@ -1,19 +1,38 @@
 class Tree:
-    def __init__(self, value):
+    def __init__(self, value, end=False):
         self.value = value
         self.nodes  = {}
-    def addn(self, value):
-        self.nodes[value] = Tree(value)
-    def getn(self, value):
-        return self.nodes[value]
+        self.end = end
+    def insert(self, key):
+        head = self
+        node = None
+        for c in key:
+            if not c in head.nodes.keys():
+                node = Tree(c)
+                head.nodes[c] = node
+            head = head.nodes[c] 
+        head.end = True
+    def match(self, word, index):
+        head = self.nodes
+        lng = 0
+        ans = 0
+        for i in range(index, len(word)):
+            if word[i] in head:
+                lng+=1
+                if head[word[i]].end:
+                    ans =max(ans, lng)
+                head = head[word[i]].nodes
+            else:
+                break
+        return ans
 
-def findSubstring(w, p):
+def findSubstrings(w, p):
     pt = buildTree(p)
     rw = []
     for word in w:
         res = (0,0)
         for i in range(len(word)):
-            temp = match(word, i, pt)
+            temp = pt.match(word, i)
             if temp > res[0]:
                 res = (temp,i)
             elif temp==res[0]:
@@ -21,38 +40,21 @@ def findSubstring(w, p):
                     res = (temp,i)
             else:
                 pass
-        i,l = res
-        rw.append(word[:i]+"["+word[i:i+l+1]+"]"+word[i+l+1:])
+        l,i = res
+        if l > 0:
+            rw.append(word[:i]+"["+word[i:i+l]+"]"+word[i+l:])
+        else:
+            rw.append(word)
     return rw
-        
-def match(w, i, t):
-    if t.value == 'end':
-        return 1
-    elif w[i] != t.value and t.value != "@":
-        return 0
-    else:
-        res = 0
-        for n,p in t.nodes.items():
-            res = 1 + max(res,match(w, i+1,t))
-        return res
 
 def buildTree(p):
     t = Tree('@')
     for w in p:
-        insertWord(t,p,0)
+        t.insert(w)
     return t
-
-def insertWord(t,p,i):
-    if i < len(p):
-        if not p[i] in t.nodes.keys():
-            t.addn(p[i])
-        insertWord(t.getn(p[i]), p, i+1)
-    else:
-        return
             
             
 
-
-words = ["Apple", "Melon", "Orange", "Watermelon"]
-parts = ["a", "mel", "lon", "el", "An"]
-print(findSubstring(words,parts))
+words= ["neuroses", "myopic", "sufficient", "televise", "coccidiosis", "gules", "during", "construe", "establish", "ethyl"]
+parts= ["aaaaa", "Aaaa", "E", "z", "Zzzzz", "a", "mel", "lon", "el", "An", "ise", "d", "g", "wnoVV", "i", "IUMc", "P", "KQ", "QfRz", "Xyj", "yiHS"]
+print(findSubstrings(words,parts))
