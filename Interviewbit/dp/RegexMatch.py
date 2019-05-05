@@ -1,11 +1,11 @@
 class Solution:
     def isMatch(self, A,B):
         if not len(A) and not len(B):
-            return 1
+            return True
         if not len(B):
-            return 0
+            return False
         if len(B) - B.count('*') > len(A):
-            return 0
+            return False
         A = "@" + A
         B = "@" + B
         dp = [[None for j in range(len(B))] for i in range(len(A))]
@@ -21,7 +21,7 @@ class Solution:
                             dp[i][j] = dp[i][j] or ( dp[i-1][j] if i > 0 else False)
                             dp[i][j] = dp[i][j] or (dp[i-1][j-1] if i > 0 and j > 0 else False)
                             dp[i][j] = dp[i][j] or ( dp[i][j-1] if j >0 else False)
-        return 1  if dp[len(A)-1][len(B)-1] else 0        
+        return True if dp[len(A)-1][len(B)-1]  else False      
         #return 1 if self.match(len(A),len(B)) else 0
     """def match(self, i,j):
         if i == 0 and j==0:
@@ -48,5 +48,5 @@ class Solution:
 
 def main():
     s = Solution()
-    print(s.isMatch("aa","aa**") )
+    print(s.isMatch("ab","?*") )
 main()
