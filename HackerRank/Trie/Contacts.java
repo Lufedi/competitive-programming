@@ -12,7 +12,7 @@ public class Contacts {
     public static void main(String[] args) {
         Contacts c = new Contacts();
         String[][] queries = new String[][]{
-            {"add", "s"},
+            /*{"add", "s"},
             {"add", "ss"},
             {"add", "sss"},
             {"add", "ssss"},
@@ -22,7 +22,11 @@ public class Contacts {
             {"find", "sss"},
             {"find", "ssss"},
             {"find", "sssss"},
-            {"find", "ssssss"}
+            {"find", "ssssss"}*/
+            {"add",  "hack"},
+{"add",  "hackerrank"},
+{"find",  "hac"},
+{"find",  "hak"}
         };
         System.out.println(Arrays.toString(c.contacts(queries)));
     }
@@ -33,11 +37,11 @@ public class Contacts {
             if(query[0].equals("add")){
                 trie.insert(query[1]);
             }else{
-                res.add(trie.query(query[1]));
+                res.add(trie.query(query[1])-1);
             }
         }
         trie.print();
-        return res.stream().mapToInt(i -> i).toArray();
+        return res.stream().mapToInt(i -> i < 0 ? 0 : i).toArray();
     }
 }
 
@@ -46,6 +50,7 @@ class TrieNode{
     char data;
     Hashtable<Character, TrieNode> children;
     boolean isEndNode;
+    int size = 0;
     public TrieNode(char data){
         this.children = new Hashtable<>();
         this.data = data;
@@ -84,6 +89,7 @@ class Trie{
                 current.isEndNode = false;
                 current = newNode;
             }
+            current.size += 1;
         }
         if(current.children.size() == 0){
             current.isEndNode = true;
@@ -99,6 +105,6 @@ class Trie{
                 return 0;
             }
         }
-        return current.children.size() + 1;
+        return current.size + 1;
     }
 }
