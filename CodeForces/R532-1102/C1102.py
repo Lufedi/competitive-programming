@@ -14,3 +14,4 @@ def main():
 	    res= cont//2 if cont % 2 == 0 else cont//2+1
 	    print(res)
 main()
+
